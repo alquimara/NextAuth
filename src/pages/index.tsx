@@ -8,14 +8,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function SignIn() {
   const [email, setEmail] = useState('')
-  const [senha, setsenha] = useState('')
+  const [password, setpassword] = useState('')
   const { signInAuth, isAuthenticated } = useContextAuth();
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
     const data = {
       email,
-      senha,
+      password,
     }
     await signInAuth(data)
   }
@@ -31,7 +31,7 @@ export default function SignIn() {
         <div>
           <form onSubmit={handleSubmit}>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" value={senha} onChange={(e) => setsenha(e.target.value)} />
+            <input type="password" value={password} onChange={(e) => setpassword(e.target.value)} />
             <button type='submit'>Entar</button>
           </form>
         </div>

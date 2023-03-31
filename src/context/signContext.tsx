@@ -5,7 +5,7 @@ import SignIn from '../pages/index';
 
 interface credencialsProps {
   email: string,
-  senha: string
+  password: string
 }
 interface AuthContextData {
   signInAuth(credencials: credencialsProps): Promise<void>,
@@ -20,11 +20,11 @@ const AuthContext = createContext({} as AuthContextData)
 
 export function AuthProvider({ children }: AuthProviderProsp) {
   const isAuthenticated = false;
-  async function signInAuth({ email, senha }: credencialsProps) {
+  async function signInAuth({ email, password }: credencialsProps) {
     try {
       const response = await api.post('sessions', {
         email,
-        senha
+        password
       })
       console.log(response.data)
 
