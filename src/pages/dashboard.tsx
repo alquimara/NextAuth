@@ -7,7 +7,10 @@ export default function dashboard() {
 
   const { user } = useContextAuth()
   useEffect(() => {
-    api.get('/me').then(response => console.log(response))
+    api.get('/me').then(response => console.log(response)).catch(error => {
+      console.log(error)
+
+    })
 
   }, [])
   return (
