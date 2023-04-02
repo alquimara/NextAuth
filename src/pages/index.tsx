@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import { FormEvent, useState } from 'react'
 import { useContextAuth } from '../context/signContext';
+import { GetServerSideProps } from 'next';
+import { parseCookies } from 'nookies';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -38,4 +40,22 @@ export default function SignIn() {
       </main>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = parseCookies(ctx)
+  if (cookies['nextAuth.token']) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false
+      }
+    }
+
+  }
+
+  return {
+    props: {}
+  }
+
 }
