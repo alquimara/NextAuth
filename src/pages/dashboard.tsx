@@ -1,7 +1,11 @@
 import React from 'react'
 import { useContextAuth } from '../context/signContext';
 import { useEffect } from 'react';
-import { api } from '@/service/api';
+import { GetServerSideProps } from 'next';
+import { autorizadoSSR } from '@/util/autorizadoSSR';
+import { setupApiClient } from '@/service/api';
+import { api } from '@/service/apiClient';
+
 
 export default function dashboard() {
 
@@ -24,3 +28,13 @@ export default function dashboard() {
     </>
   )
 }
+export const getServerSideProps: GetServerSideProps = autorizadoSSR(
+  async (ctx) => {
+    const apiClient = setupApiClient(ctx)
+    const response = await apiClient.get('/me')
+    return {
+      props: {}
+    }
+
+  }
+)

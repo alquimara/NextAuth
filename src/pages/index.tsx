@@ -4,6 +4,7 @@ import { FormEvent, useState } from 'react'
 import { useContextAuth } from '../context/signContext';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
+import { visitantesSSR } from '@/util/visitantesSSR';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -42,20 +43,11 @@ export default function SignIn() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = parseCookies(ctx)
-  if (cookies['nextAuth.token']) {
+export const getServerSideProps: GetServerSideProps = visitantesSSR(
+  async (ctx) => {
     return {
-      redirect: {
-        destination: '/dashboard',
-        permanent: false
-      }
+      props: {}
     }
 
   }
-
-  return {
-    props: {}
-  }
-
-}
+)

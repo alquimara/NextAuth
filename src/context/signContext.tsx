@@ -1,9 +1,9 @@
-import { api } from "@/service/api";
+
+import { api } from "@/service/apiClient";
 import Router from "next/router";
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
-import path from "path";
-import { Children, createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import SignIn from '../pages/index';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+
 
 
 interface credencialsProps {
